@@ -19,12 +19,20 @@ public class GameManager : MonoBehaviour
     public Text AIScoreText;
     public GameObject EnemyGoalText;
     public GameObject PlayerGoalText;
-    
+
+    public puck puckOT;
+
+    public GameObject OvertimePuck;
+    public puck OtherpuckOT;
+
+    public Enemy MoveEnemyOT;
+
     public int PlayerScore = 0;
     public int AIScore = 0;
 
     public bool Goal = false;
     public bool TimeRanOut = false;
+    public bool OT = false;
     public Text WinnerText;
     
 
@@ -36,14 +44,29 @@ public class GameManager : MonoBehaviour
         gameOverText.SetActive(false);
         EnemyGoalText.SetActive(false);
         PlayerGoalText.SetActive(false);
+        OvertimePuck.SetActive(false);
         WinnerText.gameObject.SetActive(false);
         DisplayTime(timeRemaining);
         PlayerScoreText.text = "Player: " + PlayerScore;
         AIScoreText.text = "AI: " + AIScore;
+        Debug.Log("Start");
     }
 
     void Update()
     {
+        if(OT){
+            //Debug.Log("Yea buddy!");
+            bool result = puckOT.OTgameStatus();
+            bool result2 = OtherpuckOT.OTgameStatus();
+            //Debug.Log(result);
+            if(result || result2){
+                timeRemaining = 0;
+                float minutes = 0;
+                float seconds = 0;
+                timeText.text = "Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
+        }
+        /*
         if(Goal){
             Goal = false;
             EnemyGoalText.SetActive(false);
@@ -51,39 +74,52 @@ public class GameManager : MonoBehaviour
             Vector2 puckPosition = ThePuck.position;
             puckPosition.x = -7;
             puckPosition.y = -1;
-        }
+            //Debug.Log("working");
+        }*/
+
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
             {
+                //Debug.Log("Here");
+                //Debug.Log(timeRemaining);
                 timeRemaining -= Time.deltaTime;
+                //Debug.Log(timeRemaining);
                 DisplayTime(timeRemaining);
             }
             else
             {
-                Debug.Log("Time has run out!");
+                //Debug.Log("Time has run out!");
+                player.SetActive(false);
+                AI.SetActive(false);
+                puck.SetActive(false); 
+                OvertimePuck.SetActive(false);
                 if(TimeRanOut == true){
-                    Debug.Log("Ran out of time, no one got to 7");
+                    //Debug.Log("Ran out of time, no one got to 7");
                     PlayerScore = Score.playerScore;
                     AIScore = Score.aiScore;
                     if(PlayerScore > AIScore){
                         WinnerText.text = "You won!!";
+                        OT = false;
                     }
                     else if(PlayerScore < AIScore){
                         WinnerText.text = "AI won!";
+                        OT = false;
                     }
                     else{
                         WinnerText.text = "Overtime..";
+                        OT = true;
                     }
+                
                     Invoke("Winner",  2);
                 }
 
                 gameOverText.SetActive(true);
-                player.SetActive(false);
-                AI.SetActive(false);
-                puck.SetActive(false); //disable them, but if game goes to OT, then reactivate
                 timeRemaining = 0;
                 timerIsRunning = false;
+                if(OT){
+                    Invoke("Overtime", 4);
+                }
             }
         }
         //if(GameObject.Find("puck").transform.position.x < -13.75){
@@ -130,8 +166,30 @@ public class GameManager : MonoBehaviour
     }
 
     private void Winner(){
+        //Debug.Log("Winner method");
         gameOverText.SetActive(false);
         WinnerText.gameObject.SetActive(true);
+    }
+
+    private void Overtime(){
+        //Debug.Log("yo");
+        //Start();
+        WinnerText.gameObject.SetActive(false);
+        timerIsRunning = true;
+        player.SetActive(true);
+
+        AI.SetActive(true);
+        MoveEnemyOT.OTEnemymove();
+
+
+        puck.SetActive(true);
+        puckOT.OTmove(); //respawn puck
+        OtherpuckOT.OTmoveOtherPuck();
+
+        OvertimePuck.SetActive(true);
+
+        timeRemaining = 60;
+        //Update();
     }
  
     

@@ -199,6 +199,152 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11261323}
   m_CullTransparentMesh: 0
+--- !u!1 &66556183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66556188}
+  - component: {fileID: 66556187}
+  - component: {fileID: 66556186}
+  - component: {fileID: 66556185}
+  - component: {fileID: 66556184}
+  m_Layer: 0
+  m_Name: OvertimePuck
+  m_TagString: puck
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &66556184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66556183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4c4cc504f965e4c9437305c9ee76ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1109398095}
+  enemy: {fileID: 102419201}
+  ydirPuck: 0
+  stop: {fileID: 102419204}
+  EnemyGoalText: {fileID: 291445186}
+  PlayerGoalText: {fileID: 2060896022}
+  ScoreInstance: {fileID: 2046105841}
+  GoalPlayer: 0
+  GoalEnemy: 0
+  randomNum: 0
+  seconds: 0
+  OvertimeStatus: 0
+  endOfGame: 0
+--- !u!50 &66556185
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66556183}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0.5
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &66556186
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66556183}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.925
+--- !u!212 &66556187
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66556183}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: c4c7513260466714fa6a43b5c7735fed, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.84, y: 1.85}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &66556188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66556183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.64, y: -0.87, z: 0}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &102419199
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +405,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e188d4a26dd637346a4b647c6290065e, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.21615148, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.22232866, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -333,8 +479,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxMovementSpeed: 15
-  Puck: {fileID: 835364100}
   thePuck: {fileID: 835364098}
+  OTpuck: {fileID: 66556188}
 --- !u!1 &291445186
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +891,8 @@ MonoBehaviour:
   GoalEnemy: 0
   randomNum: 0
   seconds: 0
+  OvertimeStatus: 0
+  endOfGame: 0
 --- !u!1 &843071908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6af5471bd66ad842aa1067aa759dab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 240
+  timeRemaining: 180
   timerIsRunning: 0
   timeText: {fileID: 11261325}
   gameOverText: {fileID: 1180526782}
@@ -1297,10 +1445,15 @@ MonoBehaviour:
   AIScoreText: {fileID: 843071910}
   EnemyGoalText: {fileID: 291445186}
   PlayerGoalText: {fileID: 2060896022}
+  puckOT: {fileID: 835364101}
+  OvertimePuck: {fileID: 66556183}
+  OtherpuckOT: {fileID: 66556184}
+  MoveEnemyOT: {fileID: 102419204}
   PlayerScore: 0
   AIScore: 0
   Goal: 0
   TimeRanOut: 0
+  OT: 0
   WinnerText: {fileID: 937204595}
 --- !u!4 &1775665624
 Transform:
@@ -1504,6 +1657,11 @@ PrefabInstance:
       propertyPath: puck
       value: 
       objectReference: {fileID: 835364098}
+    - target: {fileID: 2083206257611851146, guid: 9e59506f47173f84a83116f400c9ba97,
+        type: 3}
+      propertyPath: OTpuck
+      value: 
+      objectReference: {fileID: 66556188}
     - target: {fileID: 2526424485756855736, guid: 9e59506f47173f84a83116f400c9ba97,
         type: 3}
       propertyPath: m_Material
@@ -1549,6 +1707,11 @@ PrefabInstance:
       propertyPath: puck
       value: 
       objectReference: {fileID: 835364098}
+    - target: {fileID: 5829851785060826887, guid: 9e59506f47173f84a83116f400c9ba97,
+        type: 3}
+      propertyPath: OTpuck
+      value: 
+      objectReference: {fileID: 66556188}
     - target: {fileID: 6069536492676498415, guid: 9e59506f47173f84a83116f400c9ba97,
         type: 3}
       propertyPath: m_Material
@@ -1614,6 +1777,11 @@ PrefabInstance:
       propertyPath: puck
       value: 
       objectReference: {fileID: 835364098}
+    - target: {fileID: 7652010406502628098, guid: 9e59506f47173f84a83116f400c9ba97,
+        type: 3}
+      propertyPath: OTpuck
+      value: 
+      objectReference: {fileID: 66556188}
     - target: {fileID: 7964476307458938830, guid: 9e59506f47173f84a83116f400c9ba97,
         type: 3}
       propertyPath: m_Name

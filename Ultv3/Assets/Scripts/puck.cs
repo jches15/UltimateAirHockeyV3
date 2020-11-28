@@ -11,8 +11,8 @@ public class puck : MonoBehaviour
     float speed = 30;
     public Transform player;
     public Transform enemy;
-    public float ydirPuck;
 
+    public float ydirPuck;
     public Enemy stop;
 
     public GameObject EnemyGoalText;
@@ -28,6 +28,8 @@ public class puck : MonoBehaviour
     public float seconds;
     float timer = 0.0f;
 
+    public bool OvertimeStatus = false;
+    public bool endOfGame = false;
 
 
     // Start is called before the first frame update
@@ -85,6 +87,10 @@ public class puck : MonoBehaviour
     {
         if(!WasGoal)
         {
+            if(OvertimeStatus == true){
+                Debug.Log("Scored goal in ot");
+                EndGame();
+            }
             if(other.tag == "AIGoal")
             {
                 ScoreInstance.Increment(Score.Scores.PlayerScore);
@@ -204,5 +210,25 @@ public class puck : MonoBehaviour
         //stop.FixedUpdate();
         //rb.velocity = new Vector2(0,0);
         WasGoal = false;
+    }
+
+    public void OTmove(){
+        transform.position = new Vector2(-7,-1);
+        OvertimeStatus = true;
+    }
+    public void OTmoveOtherPuck(){
+        transform.position = new Vector2(7,-1);
+        OvertimeStatus = true;
+    }
+
+    private void EndGame(){
+        player.gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);
+        enemy.gameObject.SetActive(false);
+        //puck.gameObject.SetActive(false);
+        endOfGame = true;
+    }
+    public bool OTgameStatus(){
+        return endOfGame;
     }
 }
