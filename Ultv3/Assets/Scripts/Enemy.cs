@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
   private Vector2 targetPosition; 
   private Vector2 backoff;
 
+  public int difficultyScaler;
+  private float lowerSpeed;
+  private float higherSpeed;
+
   private bool OverTime = false;
  // public Transform PlayerBoundaryHolder; 
     private void Start(){
@@ -22,7 +26,24 @@ public class Enemy : MonoBehaviour
         //startingPosition = rb.position;
         startingPosition = transform.position;
         //GetComponent<Collider>().material.bounciness = 0f;
+        difficultyScaler = MainMenu.difficulty;
+        AssignEnemySpeed(difficultyScaler);
 
+    }
+
+    private void AssignEnemySpeed(int num){
+        if(num == 1){
+            lowerSpeed = 0.15f;
+            higherSpeed = 0.25f;
+        }
+        else if(num == 2){
+            lowerSpeed = 0.35f;
+            higherSpeed = 0.4f;
+        }
+        else{
+            lowerSpeed = 0.7f;
+            higherSpeed = 0.8f;
+        }
     }
 
     public void FixedUpdate(){
@@ -32,22 +53,22 @@ public class Enemy : MonoBehaviour
         //Debug.Log(random);
 
         if(OverTime && random < 6){
-            movementSpeed = MaxMovementSpeed * Random.Range(0.3f, 0.4f);
+            movementSpeed = MaxMovementSpeed * Random.Range(lowerSpeed, higherSpeed);
             targetPosition.x = OTpuck.position.x;
             targetPosition.y = OTpuck.position.y;
 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementSpeed * Time.fixedDeltaTime);
         }
         else{
-            movementSpeed = MaxMovementSpeed * Random.Range(0.3f, 0.4f);
+            movementSpeed = MaxMovementSpeed * Random.Range(lowerSpeed, higherSpeed);
             //movementSpeed = Random.Range(MaxMovementSpeed * 0.4f, MaxMovementSpeed);
             //rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, movementSpeed * Time.fixedDeltaTime));
 
             targetPosition.x = thePuck.position.x;
             targetPosition.y = thePuck.position.y;
             //Debug.Log(targetPosition.x - transform.position.x);
-            if(targetPosition.x - transform.position.x < -8){ 
-                backoff.x = Random.Range(9f, 11f);
+            if(targetPosition.x - transform.position.x < -7){ 
+                backoff.x = Random.Range(10f, 11f);
                 backoff.y = Random.Range(0f, -1f);
                 //Debug.Log(backoff.x);
                 //Debug.Log(backoff.y);
