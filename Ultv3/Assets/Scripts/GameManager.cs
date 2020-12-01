@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public bool OT = false;
     public Text WinnerText;
     
+    
 
     private void Start()
     {
@@ -46,10 +47,12 @@ public class GameManager : MonoBehaviour
         PlayerGoalText.SetActive(false);
         OvertimePuck.SetActive(false);
         WinnerText.gameObject.SetActive(false);
+        
         DisplayTime(timeRemaining);
         PlayerScoreText.text = "Player: " + PlayerScore;
         AIScoreText.text = "AI: " + AIScore;
         Debug.Log("Start");
+        
     }
 
     void Update()
