@@ -31,12 +31,25 @@ public class puck : MonoBehaviour
     public bool OvertimeStatus = false;
     public bool endOfGame = false;
 
+    public Text MoneyPuckText;
+    public bool isMoneyPuck;
+    private int goalAmount;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         WasGoal = false;
+        //isMoneyPuck = __.moneypuck
+        isMoneyPuck = true;
+        if(isMoneyPuck){
+            MoneyPuckText.gameObject.SetActive(true);
+            goalAmount = randomGoalAmount();
+        }
+        else{
+            MoneyPuckText.gameObject.SetActive(false);
+        }
+
     }
 
     // Update is called once per frame
@@ -93,17 +106,24 @@ public class puck : MonoBehaviour
             }
             if(other.tag == "AIGoal")
             {
-                ScoreInstance.Increment(Score.Scores.PlayerScore);
+                if(isMoneyPuck){
+                    ScoreInstance.IncrementMoneyPuck(Score.Scores.PlayerScore, goalAmount);
+                }
+                else{
+                    ScoreInstance.Increment(Score.Scores.PlayerScore);
+                }
                 WasGoal = true;
-                //transform.SetActive(false);
-                //puck.SetActive(false);
                 EnemyGoal();
             }
             else if (other.tag == "PlayerGoal")
             {
-                ScoreInstance.Increment(Score.Scores.AiScore);
+                if(isMoneyPuck){
+                    ScoreInstance.IncrementMoneyPuck(Score.Scores.AiScore, goalAmount);
+                }
+                else{
+                    ScoreInstance.Increment(Score.Scores.AiScore);
+                }
                 WasGoal = true;
-                //transform.SetActive(false);
                 PlayerGoal();
             }
         }
@@ -210,6 +230,7 @@ public class puck : MonoBehaviour
         //stop.FixedUpdate();
         //rb.velocity = new Vector2(0,0);
         WasGoal = false;
+        goalAmount = randomGoalAmount();
     }
 
     public void OTmove(){
@@ -230,5 +251,14 @@ public class puck : MonoBehaviour
     }
     public bool OTgameStatus(){
         return endOfGame;
+    }
+
+    private int randomGoalAmount(){
+        int num = Random.Range(-2, 3);
+        if(num == 0){
+            num = 3;
+        }
+        MoneyPuckText.text = "Next Goal is Worth: " + num;
+        return num;
     }
 }
