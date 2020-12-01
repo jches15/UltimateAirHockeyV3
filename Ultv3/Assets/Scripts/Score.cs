@@ -8,8 +8,6 @@ public class Score : MonoBehaviour
     {
         AiScore, PlayerScore
 
-
-
     }
     public Text AiScoreTxt, PlayerScoreTxt;
     public static int aiScore, playerScore;
@@ -37,16 +35,16 @@ public class Score : MonoBehaviour
                     AiScoreTxt.text = "AI: " + aiScore.ToString();
                 }
                 else{
-                    int temp2 = aiScore + amount;
-                    Debug.Log("Ai loses a goal" + temp2);
-                    AiScoreTxt.text = "AI: " + temp2.ToString();
+                    aiScore = aiScore + amount;
+                    //Debug.Log("Ai loses a goal" + temp2);
+                    AiScoreTxt.text = "AI: " + aiScore.ToString();
                 }
                 PlayerScoreTxt.text = "Player: " + (++playerScore).ToString();
             }
             
             else{ //otherwise, increment player score by random amount
-                int temp = amount;
-                playerScore = playerScore + temp;
+                //int temp = amount;
+                playerScore = playerScore + amount;
                 PlayerScoreTxt.text = "Player: " + playerScore.ToString();
                 //Debug.Log("player scored more than one goal");
             }
@@ -59,15 +57,15 @@ public class Score : MonoBehaviour
                     PlayerScoreTxt.text = "Player: " + playerScore.ToString();
                 }
                 else{
-                    int temp2 = playerScore + amount;
-                    Debug.Log("player loses a goal" + temp2);
-                    PlayerScoreTxt.text = "Player: " + temp2.ToString();
+                    playerScore = playerScore + amount;
+                    //Debug.Log("player loses a goal" + temp2);
+                    PlayerScoreTxt.text = "Player: " + playerScore.ToString();
                 }
                 AiScoreTxt.text = "AI: " + (++aiScore).ToString();
             }
             else{ //otherwise, increment AI score by random amount
-                int temp = amount;
-                aiScore = aiScore + temp;
+                //int temp = amount;
+                aiScore = aiScore + amount;
                 AiScoreTxt.text = "AI: " + aiScore.ToString();
                 //Debug.Log("AI scored more than one goal");
             }

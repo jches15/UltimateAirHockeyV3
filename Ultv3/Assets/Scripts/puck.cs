@@ -40,8 +40,7 @@ public class puck : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         WasGoal = false;
-        //isMoneyPuck = __.moneypuck
-        isMoneyPuck = true;
+        isMoneyPuck = FirstMenu.moneyPuck;
         if(isMoneyPuck){
             MoneyPuckText.gameObject.SetActive(true);
             goalAmount = randomGoalAmount();

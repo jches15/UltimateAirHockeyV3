@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class FirstMenu : MonoBehaviour
 {
+
+    public enum MenuChoice
+    {
+        moneyPuck
+
+    }
+    public static bool moneyPuck = false;
+
     public void NormalButton(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -12,6 +20,6 @@ public class FirstMenu : MonoBehaviour
 
     public void MoneyPuckButton(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+        moneyPuck = true;    
     }
 }
