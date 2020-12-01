@@ -76,11 +76,11 @@ public class Score : MonoBehaviour
     }
 
     private void checkScore(){
-        if(playerScore >= 7){
+        if(playerScore >= 1){
             playerWon = true;
             done.gameOver(playerWon, AIWon);
         }
-        else if(aiScore >= 7){
+        else if(aiScore >= 1){
             AIWon = true;
             done.gameOver(playerWon, AIWon);
         }

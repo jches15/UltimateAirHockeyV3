@@ -6,12 +6,8 @@ public class FirstMSounds : MonoBehaviour
 {
    public AudioSource Menu;
 
-
-
    public void PlayMenu(){
        Menu.Play();
-
-
-
+       Debug.Log("HEREEEE");
    }
 }

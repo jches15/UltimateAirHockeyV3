@@ -36,6 +36,13 @@ public class GameManager : MonoBehaviour
     public Text WinnerText;
     
     
+    public AudioSource SongOne;
+    public AudioSource SongTwo;
+    public AudioSource SongThree;
+    public AudioSource SongFour;
+    public AudioSource YouWin;
+    public AudioSource YouLose;
+    int songNum;
 
     private void Start()
     {
@@ -52,7 +59,8 @@ public class GameManager : MonoBehaviour
         PlayerScoreText.text = "Player: " + PlayerScore;
         AIScoreText.text = "AI: " + AIScore;
         Debug.Log("Start");
-        
+        //SongOne.Play();
+        pickSong();
     }
 
     void Update()
@@ -103,10 +111,14 @@ public class GameManager : MonoBehaviour
                     AIScore = Score.aiScore;
                     if(PlayerScore > AIScore){
                         WinnerText.text = "You won!!";
+                        SongStop();
+                        YouWin.Play();
                         OT = false;
                     }
                     else if(PlayerScore < AIScore){
                         WinnerText.text = "AI won!";
+                        SongStop();
+                        YouLose.Play();
                         OT = false;
                     }
                     else{
@@ -161,9 +173,13 @@ public class GameManager : MonoBehaviour
         timeText.text = "Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
         if(playerStatus == true){
             WinnerText.text = "You won!!";
+            SongStop();
+            YouWin.Play();
         }
         else{
             WinnerText.text = "AI won!";
+            SongStop();
+            YouLose.Play();
         }
         Invoke("Winner",  2);
     }
@@ -193,6 +209,37 @@ public class GameManager : MonoBehaviour
 
         timeRemaining = 60;
         //Update();
+    }
+
+    private void pickSong(){
+        songNum = Random.Range(0, 4);
+        if(songNum == 0){
+            SongOne.Play();
+        }
+        else if(songNum == 1){
+            SongTwo.Play();
+        }
+        else if(songNum == 2){
+            SongThree.Play();
+        }
+        else{
+            SongFour.Play();
+        }
+    }
+
+    private void SongStop(){
+        if(songNum == 0){
+            SongOne.Stop();
+        }
+        else if(songNum == 1){
+            SongTwo.Stop();
+        }
+        else if(songNum == 2){
+            SongThree.Stop();
+        }
+        else{
+            SongFour.Stop();
+        }
     }
  
     
