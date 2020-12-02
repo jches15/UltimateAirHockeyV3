@@ -41,12 +41,17 @@ public class Enemy : MonoBehaviour
             higherSpeed = 0.4f;
         }
         else{
-            lowerSpeed = 0.7f;
-            higherSpeed = 0.8f;
+            lowerSpeed = 0.9f;
+            higherSpeed = 1.0f;
         }
     }
 
     public void FixedUpdate(){
+
+        Vector2 enemypos = transform.position;
+        if(enemypos.x > 13.5){
+            transform.position = new Vector2(11.29f,-1f);
+        }
         float movementSpeed;
 
         int random = Random.Range(0, 12);
@@ -69,14 +74,20 @@ public class Enemy : MonoBehaviour
             //Debug.Log(targetPosition.x - transform.position.x);
             if(targetPosition.x - transform.position.x < -7){ 
                 backoff.x = Random.Range(10f, 11f);
-                backoff.y = Random.Range(0f, -1f);
+                backoff.y = Random.Range(-3.5f, 1.85f);
+                //backoff.x = 10f;
+                //backoff.y = 1.3f;
                 //Debug.Log(backoff.x);
                 //Debug.Log(backoff.y);
+                //while(transform.position.x != backoff.x && transform.position.y != backoff.y){
+                  //  Debug.Log("here");
+                   // transform.position = Vector2.MoveTowards(transform.position, backoff, movementSpeed * Time.fixedDeltaTime);
+                //}
                 transform.position = Vector2.MoveTowards(transform.position, backoff, movementSpeed * Time.fixedDeltaTime);
             }
 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementSpeed * Time.fixedDeltaTime);
-            }   
+        }   
     }
     public void Goal(){
         rb.velocity = new Vector2(0,0);

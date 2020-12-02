@@ -59,17 +59,14 @@ public class GameManager : MonoBehaviour
         PlayerScoreText.text = "Player: " + PlayerScore;
         AIScoreText.text = "AI: " + AIScore;
         Debug.Log("Start");
-        //SongOne.Play();
         pickSong();
     }
 
     void Update()
     {
         if(OT){
-            //Debug.Log("Yea buddy!");
             bool result = puckOT.OTgameStatus();
             bool result2 = OtherpuckOT.OTgameStatus();
-            //Debug.Log(result);
             if(result || result2){
                 timeRemaining = 0;
                 float minutes = 0;
@@ -77,36 +74,21 @@ public class GameManager : MonoBehaviour
                 timeText.text = "Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
             }
         }
-        /*
-        if(Goal){
-            Goal = false;
-            EnemyGoalText.SetActive(false);
-            //Debug.Log("Here");
-            Vector2 puckPosition = ThePuck.position;
-            puckPosition.x = -7;
-            puckPosition.y = -1;
-            //Debug.Log("working");
-        }*/
 
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
             {
-                //Debug.Log("Here");
-                //Debug.Log(timeRemaining);
                 timeRemaining -= Time.deltaTime;
-                //Debug.Log(timeRemaining);
                 DisplayTime(timeRemaining);
             }
             else
             {
-                //Debug.Log("Time has run out!");
                 player.SetActive(false);
                 AI.SetActive(false);
                 puck.SetActive(false); 
                 OvertimePuck.SetActive(false);
                 if(TimeRanOut == true){
-                    //Debug.Log("Ran out of time, no one got to 7");
                     PlayerScore = Score.playerScore;
                     AIScore = Score.aiScore;
                     if(PlayerScore > AIScore){
@@ -137,18 +119,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        //if(GameObject.Find("puck").transform.position.x < -13.75){
         Vector2 puckPos = ThePuck.position;
-        /*
-        if(puckPos.x < -13.75){
-            //Debug.Log("yup");
-            puck.SetActive(false);
-            EnemyGoal();
-        }
-        else if(puckPos.x > 13.4){
-            puck.SetActive(false);
-            PlayerGoal();
-        }*/
     }
 
     void DisplayTime(float timeToDisplay)
@@ -166,9 +137,8 @@ public class GameManager : MonoBehaviour
         timeRemaining = 0;
         float minutes = 0;
         float seconds = 0;
-        //Debug.Log("TimeRanOut = " + TimeRanOut);
+
         TimeRanOut = false;
-        //Debug.Log("TimeRanOut = " + TimeRanOut);
         Update();
         timeText.text = "Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
         if(playerStatus == true){
@@ -185,14 +155,12 @@ public class GameManager : MonoBehaviour
     }
 
     private void Winner(){
-        //Debug.Log("Winner method");
         gameOverText.SetActive(false);
         WinnerText.gameObject.SetActive(true);
     }
 
     private void Overtime(){
-        //Debug.Log("yo");
-        //Start();
+
         WinnerText.gameObject.SetActive(false);
         timerIsRunning = true;
         player.SetActive(true);
@@ -208,7 +176,6 @@ public class GameManager : MonoBehaviour
         OvertimePuck.SetActive(true);
 
         timeRemaining = 60;
-        //Update();
     }
 
     private void pickSong(){

@@ -33,6 +33,7 @@ public class puck : MonoBehaviour
 
     public Text MoneyPuckText;
     public bool isMoneyPuck;
+
     private int goalAmount;
 
     // Start is called before the first frame update
@@ -48,7 +49,6 @@ public class puck : MonoBehaviour
         else{
             MoneyPuckText.gameObject.SetActive(false);
         }
-
     }
 
     // Update is called once per frame
@@ -78,7 +78,7 @@ public class puck : MonoBehaviour
             timer = 0;
         }
 
-        if((puckpos.x > 12.09 && puckpos.y < -4.5) || (puckpos.x > 12.09 && puckpos.y > 2.5)){ //puck gets stuck in enemy corners
+        if((puckpos.x > 12.20 && puckpos.y < -4.4) || (puckpos.x > 12.10 && puckpos.y > 2.32)){ //puck gets stuck in enemy corners
             randomNum = Random.Range(0, 2);
             if(randomNum == 0){
                 transform.position = new Vector2(-7,-1);
@@ -178,6 +178,10 @@ public class puck : MonoBehaviour
                     //rb.AddForce(new Vector2(speed, ydirPuck), ForceMode2D.Impulse);
                 }
                 //rb.AddForce(new Vector2(speed, 10), ForceMode2D.Impulse);
+        }
+        else if(col.gameObject.tag == "puck"){ //overtime
+            ydirPuck = Random.Range(1, 20);
+            rb.AddForce(new Vector2(speed / 1.5f, ydirPuck), ForceMode2D.Impulse);
         }
 
     }
