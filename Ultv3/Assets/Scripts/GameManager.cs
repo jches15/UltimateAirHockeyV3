@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    
     public float timeRemaining = 10;
     public bool timerIsRunning = false;
     public Text timeText;
@@ -42,10 +43,13 @@ public class GameManager : MonoBehaviour
     public AudioSource SongFour;
     public AudioSource YouWin;
     public AudioSource YouLose;
+    public AudioSource SongFive;
     int songNum;
+
 
     private void Start()
     {
+        BGsoundScript.Instance.gameObject.GetComponent<AudioSource>().Pause(); //stops menu music
         // Starts the timer automatically
         timerIsRunning = true;
         TimeRanOut = true;
@@ -179,7 +183,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void pickSong(){
-        songNum = Random.Range(0, 4);
+        songNum = Random.Range(0, 5);
         if(songNum == 0){
             SongOne.Play();
         }
@@ -189,8 +193,11 @@ public class GameManager : MonoBehaviour
         else if(songNum == 2){
             SongThree.Play();
         }
-        else{
+        else if(songNum == 3){
             SongFour.Play();
+        }
+        else{
+            SongFive.Play();
         }
     }
 
@@ -204,8 +211,11 @@ public class GameManager : MonoBehaviour
         else if(songNum == 2){
             SongThree.Stop();
         }
-        else{
+        else if(songNum == 3){
             SongFour.Stop();
+        }
+        else{
+            SongFive.Stop();
         }
     }
  
